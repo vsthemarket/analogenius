@@ -27,13 +27,13 @@ export default function Navigation() {
             className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
           >
             <li>
-              <a>Home</a>
+              <Link href="/">Home</Link>
             </li>
             <li>
-              <a>Search</a>
+              <Link href="/search">Search</Link>
             </li>
             <li>
-              <a>About</a>
+              <Link href="/about">About</Link>
             </li>
           </ul>
         </div>
@@ -53,7 +53,9 @@ export default function Navigation() {
         </ul>
       </div>
       <div className="navbar-end pr-5">
-        <a className="btn">Login</a>
+        <Link className="btn" href="/login">
+          Login
+        </Link>
       </div>
     </div>
   );

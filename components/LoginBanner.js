@@ -1,4 +1,12 @@
-export default function LoginBanner() {
+"use client";
+import Link from "next/link";
+import { useSupabase } from "@/app/supabase-provider";
+
+export default function LoginBanner({ user }) {
+  const { supabase } = useSupabase();
+
+  // if user is logged in, don't show the banner
+  if (user) return <></>;
   return (
     <div className="alert alert-info shadow-lg">
       <div>
@@ -20,7 +28,10 @@ export default function LoginBanner() {
           features, such as saving your favorite responses, creating your own
           analogs, and adding a like to responses generate by other users!
         </p>
-        <button className="btn btn-primary ">Login</button>
+        <Link href="/login">
+          {" "}
+          <button className="btn btn-primary">Login</button>
+        </Link>
       </div>
     </div>
   );

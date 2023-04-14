@@ -1,4 +1,19 @@
+import { tagConverter } from "@/utils/tagConverter";
+import supabaseServerClient from "@/utils/supabase-server";
+import Link from "next/link";
+
+async function getQueries(supabase) {
+  const { data, error } = await supabase.from("queries").select("*");
+  if (error) {
+    console.log(error);
+    return [];
+  }
+  return data;
+}
+
 export default async function search() {
+  const supabase = supabaseServerClient();
+  const queries = await getQueries(supabase);
   return (
     <>
       <div className="overflow-x-auto w-full flex flex-col justify-center items-center">
@@ -19,24 +34,30 @@ export default async function search() {
             </tr>
           </thead>
           <tbody>
-            {/* row 1 */}
-            <tr className="hover cursor-pointer">
-              <td>Cy Ganderton</td>
-              <td>Quality Control Specialist</td>
-              <td>Blue</td>
-            </tr>
-            {/* row 2 */}
-            <tr className="hover cursor-pointer">
-              <td>Hart Hagerty</td>
-              <td>Desktop Support Technician</td>
-              <td>Purple</td>
-            </tr>
-            {/* row 3 */}
-            <tr className="hover cursor-pointer">
-              <td>Brice Swyre</td>
-              <td>Tax Accountant</td>
-              <td>Red</td>
-            </tr>
+            {queries.map((query, idx) => {
+              return (
+                <tr key={idx} className="hover cursor-pointer">
+                  <td>
+                    <Link href={`/search/${query.id}`}>{query?.concept}</Link>
+                  </td>
+
+                  <td>{query?.analog}</td>
+                  <td>
+                    {query?.tags?.map((tag, idx) => {
+                      return (
+                        <div
+                          key={idx}
+                          className=" h-12 w-12 ml-2 mr-2 text-2xl rounded-md bg-base-100 flex justify-center items-center shadow-md"
+                        >
+                          {" "}
+                          <p>{tagConverter[tag]}</p>{" "}
+                        </div>
+                      );
+                    })}{" "}
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>

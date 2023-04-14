@@ -5,15 +5,15 @@ export default function queryForm() {
     e.preventDefault();
     const data = new FormData(e.target);
     const value = Object.fromEntries(data.entries());
-    console.log(value);
 
-    const res = await fetch("/query", {
+    const res = await fetch("/api/query", {
       method: "POST",
       body: JSON.stringify(value),
       headers: {
         "Content-Type": "application/json",
       },
     });
+
     console.log(res);
   };
   return (
