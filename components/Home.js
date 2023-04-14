@@ -1,21 +1,26 @@
 "use client";
+import Image from "next/image";
 import QueryForm from "./QueryForm";
 import { useState } from "react";
+import LoginBanner from "./LoginBanner";
 
 export default function Home() {
-  const [hasSearched, setHasSearched] = useState(false);
+  const [queryResponse, setQueryResponse] = useState(null);
+  // create array called tags with dfferent emojis for values
+  const tags = ["⛳️", "🎣", "🏀"];
   return (
-    <div className="flex flex-col justify-start items-center pt-24 gap-10 min-h-[calc(100vh-53px)]  bg-base-200">
-      {!hasSearched && (
-        <div className="hero-content flex flex-col text-center max-w-7xl">
-          <div className="flex flex-col lg:flex-row">
-            <div className="max-w-md flex justify-start flex-col items-start w-2/3">
-              <h1 className="text-5xl font-bold text-indigo-500">
-                Hello there
-              </h1>
-              <p className="py-6">
-                Analogenius is an AI-powered tool that teaches you difficult
-                concepts with easy to understand analogies.
+    <>
+      {!queryResponse && (
+        <div className="hero-content flex flex-col text-center max-w-7xl ">
+          <div className="flex flex-col lg:flex-row border-b-2 border-pink-400 pb-5">
+            <div className="max-w-md flex justify-start flex-col items-start ">
+              <h1 className="text-5xl font-bold text-cyan-400">Hello there</h1>
+              <p className="py-6 text-start text-cyan-300">
+                <em>
+                  {" "}
+                  Analogenius is an AI-powered tool that teaches you difficult
+                  concepts with easy to understand analogies.
+                </em>
               </p>
               <ol className=" list-decimal text-lg ">
                 <li className="text-start">
@@ -31,31 +36,48 @@ export default function Home() {
                 </li>
               </ol>
             </div>
-            <div className="w-2 bg-gray-200 h-full"></div>
-            <div className=" max-w-xl">
-              <p>
-                Create an account and sign in to take advantage of Analogenius
-                best features, such as saving your favorite responses, creating
-                your own analogs, and adding a like to responses generate by
-                other users!
-              </p>
-              <button className="btn btn-primary mt-5">Login</button>
-            </div>
           </div>
           <div>
             <QueryForm />
           </div>
         </div>
       )}
-      {hasSearched && (
-        <div className="flex flex-col justify-center items-center">
-          <h1 className="text-5xl font-bold text-indigo-500">Results</h1>
-          <p className="py-6">
-            Analogenius is an AI-powered tool that teaches you difficult
-            concepts with easy to understand analogies.
-          </p>
+      {queryResponse && (
+        <div className="flex flex-col justify-center items-center w-full lg:w-1/2 mb-5 max-w-7xl min-h-16">
+          <h1 className="text-5xl font-bold mb-5">Results</h1>
+          <div className="flex justify-center items-center flex-col">
+            <div className="w-full text-lg p-4  border border-base-200 shadow-lg bg-base-100">
+              <p>
+                Lorem Ipsum is simply dummy text of the printing and typesetting
+                industry. Lorem Ipsum has been the industry standard dummy text
+                ever since the 1500s, when an unknown printer took a galley of
+                type and scrambled it to make a type specimen book. It has
+                survived not only five centuries, but also the leap into
+                electronic typesetting, remaining essentially unchanged. It was
+                popularised in the 1960s with the release of Letraset sheets
+                containing Lorem Ipsum passages, and more recently with desktop
+                publishing software like Aldus PageMaker including versions of
+                Lorem Ipsum.
+              </p>{" "}
+            </div>
+            <div className="self-start flex justify-center items-center  mt-2">
+              {" "}
+              <p className="text-lg">Tags:</p>{" "}
+              {tags.map((tag, idx) => {
+                return (
+                  <div
+                    key={idx}
+                    className=" h-12 w-12 ml-2 mr-2 text-2xl rounded-md bg-base-100 flex justify-center items-center shadow-md"
+                  >
+                    {" "}
+                    <p>{tag}</p>{" "}
+                  </div>
+                );
+              })}{" "}
+            </div>
+          </div>
         </div>
       )}
-    </div>
+    </>
   );
 }

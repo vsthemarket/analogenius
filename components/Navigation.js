@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 
 export default function Navigation() {
   return (
@@ -26,32 +27,32 @@ export default function Navigation() {
             className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
           >
             <li>
-              <a>Item 1</a>
+              <a>Home</a>
             </li>
             <li>
-              <a>Item 2</a>
+              <a>Search</a>
             </li>
             <li>
-              <a>Item 3</a>
+              <a>About</a>
             </li>
           </ul>
         </div>
-        <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
+        <a className="cursor-pointer normal-case text-4xl pl-5"> 🚀</a>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
           <li>
-            <a>Home</a>
+            <Link href="/">Home</Link>
           </li>
           <li>
-            <a>Search</a>
+            <Link href="/search">Search</Link>
           </li>
           <li>
-            <a>About</a>
+            <Link href="/about">About</Link>
           </li>
         </ul>
       </div>
-      <div className="navbar-end">
+      <div className="navbar-end pr-5">
         <a className="btn">Login</a>
       </div>
     </div>
