@@ -21,7 +21,7 @@ export default async function search() {
         <input
           type="text"
           placeholder="Search..."
-          className="input input-bordered input-info w-full max-w-xs mb-5"
+          className="input input-bordered input-info w-full max-w-xs mt-5 mb-5"
         />
 
         <table className="table table-zebra w-full max-w-7xl gap-2 p-5">
@@ -50,7 +50,7 @@ export default async function search() {
                           className=" h-12 w-12 ml-2 mr-2 text-2xl rounded-md bg-base-100 flex justify-center items-center shadow-md"
                         >
                           {" "}
-                          <p>{tagConverter[tag]}</p>{" "}
+                          <p>{tagConverter[tag.toLowerCase()]}</p>{" "}
                         </div>
                       );
                     })}{" "}

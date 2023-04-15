@@ -18,7 +18,6 @@ async function getQuery(supabase, id) {
 export default async function QueryPage({ params }) {
   const supabase = supabaseServerClient();
   const query = await getQuery(supabase, params.id);
-  console.log(query);
 
   if (!query) {
     return <div>loading...</div>;
@@ -26,16 +25,16 @@ export default async function QueryPage({ params }) {
 
   return (
     <div className="flex flex-col justify-center items-center w-full lg:w-1/2 mb-5 max-w-7xl min-h-16">
-      <h1 className="text-5xl font-bold mb-5">{query[0]?.concept}</h1>
+      <h1 className="text-5xl font-bold mb-5">{query?.concept}</h1>
       <div className="flex justify-center items-center flex-col">
         <div className="w-full text-lg p-4  border border-base-200 shadow-lg bg-base-100">
-          <p>{query[0]?.response}</p>{" "}
+          <p>{query?.response}</p>{" "}
         </div>
         <div className="self-start flex justify-center items-center  mt-2">
           {" "}
           <p className="text-lg">Tags:</p>{" "}
-          {query[0]?.tags &&
-            query[0].tags.map((tag, idx) => {
+          {query?.tags &&
+            query.tags.map((tag, idx) => {
               return (
                 <div
                   key={idx}

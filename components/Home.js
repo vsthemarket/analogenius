@@ -2,27 +2,29 @@
 import Image from "next/image";
 import QueryForm from "./QueryForm";
 import { useState } from "react";
-import LoginBanner from "./LoginBanner";
+import LoadingScreen from "./LoadingScreen";
 
 export default function Home() {
   const [queryResponse, setQueryResponse] = useState(null);
+  const [loading, setLoading] = useState(false);
   // create array called tags with dfferent emojis for values
   const tags = ["⛳️", "🎣", "🏀"];
   return (
     <>
+      {loading && <LoadingScreen />}
       {!queryResponse && (
         <div className="hero-content flex flex-col text-center max-w-7xl ">
           <div className="flex flex-col lg:flex-row border-b-2 border-pink-400 pb-5">
-            <div className="max-w-md flex justify-start flex-col items-start ">
-              <h1 className="text-5xl font-bold text-cyan-400">Hello there</h1>
-              <p className="py-6 text-start text-cyan-300">
+            <div className="max-w-xl flex justify-start flex-col items-start ">
+              <h1 className="text-5xl font-bold ">Hello there!</h1>
+              <p className="py-6 text-start text-gray-300">
                 <em>
                   {" "}
                   Analogenius is an AI-powered tool that teaches you difficult
                   concepts with easy to understand analogies.
                 </em>
               </p>
-              <ol className=" list-decimal text-lg ">
+              <ol className="text-gray-300 list-decimal text-lg ">
                 <li className="text-start">
                   Input a topic you want to learn in the concept text box
                 </li>
@@ -38,7 +40,7 @@ export default function Home() {
             </div>
           </div>
           <div>
-            <QueryForm />
+            <QueryForm setLoading={setLoading} />
           </div>
         </div>
       )}

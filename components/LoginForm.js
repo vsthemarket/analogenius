@@ -34,10 +34,9 @@ export default function LoginForm({ user }) {
         </div>
       )}
       {user && (
-        <div>
-          <h1>Hi, {user?.user?.email}</h1>
-          <button onClick={() => supabase.auth.signOut()}>Sign out</button>
-          <h2>You are already signed in!</h2>
+        <div className="flex flex-col justify-center items-start">
+          <h1 className="text-5xl font-bold">Hi, {user?.user?.email}</h1>
+          <h2 className="text-2xl">You are already signed in!</h2>
         </div>
       )}
     </>

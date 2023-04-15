@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 
-export default function Navigation() {
+export default function Navigation({ user }) {
   return (
     <div className="navbar bg-base-100 absolute">
       <div className="navbar-start">
@@ -53,9 +53,20 @@ export default function Navigation() {
         </ul>
       </div>
       <div className="navbar-end pr-5">
-        <Link className="btn" href="/login">
-          Login
-        </Link>
+        {!user && (
+          <Link className="btn" href="/login">
+            Login
+          </Link>
+        )}
+        {user && (
+          <Link href="/profile">
+            <div className="avatar placeholder">
+              <div className="bg-neutral-focus text-neutral-content rounded-full w-12">
+                <span>{user?.user?.email.slice(0, 1).toUpperCase()}</span>
+              </div>
+            </div>
+          </Link>
+        )}
       </div>
     </div>
   );

@@ -1,8 +1,9 @@
 "use client";
 
-export default function queryForm() {
+export default function queryForm({ setLoading }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     const data = new FormData(e.target);
     const value = Object.fromEntries(data.entries());
 
@@ -13,6 +14,13 @@ export default function queryForm() {
         "Content-Type": "application/json",
       },
     });
+    if (res.ok) {
+      setLoading(false);
+    }
+    if (res.error) {
+      setLoading(false);
+      console.log(json.error);
+    }
 
     console.log(res);
   };
@@ -48,6 +56,7 @@ export default function queryForm() {
             <option>Programming</option>
           </select>
         </div>
+        <input type="hidden" name="email" value="bry7100@gmail.com" />
         <input type="submit" value="Submit" className="btn" />
       </div>
     </form>

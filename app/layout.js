@@ -22,7 +22,7 @@ export default async function RootLayout({ children }) {
     <html lang="en">
       <body>
         <SupabaseProvider>
-          <Navigation />
+          <Navigation user={user} />
           <div className="flex flex-col justify-start items-center pt-20 gap-10 min-h-[calc(100vh-53px)] p-2  bg-base-200">
             <LoginBanner user={user} />
             {children}
