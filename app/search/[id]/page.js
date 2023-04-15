@@ -1,3 +1,4 @@
+import LikeButton from "@/components/LikeButton";
 import supabaseServerClient from "@/utils/supabase-server";
 import { tagConverter } from "@/utils/tagConverter";
 
@@ -32,7 +33,6 @@ export default async function QueryPage({ params }) {
         </div>
         <div className="self-start flex justify-center items-center  mt-2">
           {" "}
-          <p className="text-lg">Tags:</p>{" "}
           {query?.tags &&
             query.tags.map((tag, idx) => {
               return (
@@ -41,10 +41,13 @@ export default async function QueryPage({ params }) {
                   className=" h-12 w-12 ml-2 mr-2 text-2xl rounded-md bg-base-100 flex justify-center items-center shadow-md"
                 >
                   {" "}
-                  <p>{tagConverter[tag]}</p>{" "}
+                  <p>
+                    {tagConverter[tag.split(" ").join("").toLowerCase()]}
+                  </p>{" "}
                 </div>
               );
             })}{" "}
+          <LikeButton likes={query?.likes} />
         </div>
       </div>
     </div>

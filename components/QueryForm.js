@@ -49,11 +49,21 @@ export default function queryForm({ setLoading }) {
               Pick an analogy
             </option>
             <option>Golf</option>
-            <option>Fishing</option>
+            <option>Programming</option>
             <option>Basketball</option>
+            <option>Fishing</option>
             <option>Soccer</option>
             <option>American Football</option>
-            <option>Programming</option>
+            <option>Baseball</option>
+            <option>Surfing</option>
+            <option>Snowboarding</option>
+            <option>Chess</option>
+            <option>Video Games</option>
+            <option>Music</option>
+            <option>Art</option>
+            <option>Martial Arts</option>
+            <option>Volleyball</option>
+            <option>Dance</option>
           </select>
         </div>
         <input type="hidden" name="email" value="bry7100@gmail.com" />
