@@ -37,7 +37,10 @@ export default function Navigation({ user }) {
             </li>
           </ul>
         </div>
-        <a className="cursor-pointer normal-case text-4xl pl-5"> 🚀</a>
+        <a className="cursor-pointer normal-case text-2xl lg:text-4xl pl-2 lg:pl-5">
+          {" "}
+          🚀
+        </a>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">

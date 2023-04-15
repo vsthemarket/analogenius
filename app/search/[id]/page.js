@@ -1,6 +1,7 @@
 import LikeButton from "@/components/LikeButton";
 import supabaseServerClient from "@/utils/supabase-server";
 import { tagConverter } from "@/utils/tagConverter";
+import FavoriteButton from "@/components/FavoriteButton";
 
 async function getQuery(supabase, id) {
   const { data, error } = await supabase
@@ -16,9 +17,26 @@ async function getQuery(supabase, id) {
   return data;
 }
 
+async function getUser(supabase, email) {
+  const { data, error } = await supabase
+    .from("profiles")
+    .select("*")
+    .eq("email", email)
+    .select("*")
+    .single();
+  if (error) {
+    console.log(error);
+    return [];
+  }
+  return data;
+}
+
 export default async function QueryPage({ params }) {
   const supabase = supabaseServerClient();
-  const query = await getQuery(supabase, params.id);
+  const { data } = await supabase.auth.getUser();
+  const queryData = getQuery(supabase, params.id);
+  const userData = getUser(supabase, data.user.email);
+  const [query, user] = await Promise.all([queryData, userData]);
 
   if (!query) {
     return <div>loading...</div>;
@@ -30,6 +48,12 @@ export default async function QueryPage({ params }) {
       <div className="flex justify-center items-center flex-col">
         <div className="w-full text-lg p-4  border border-base-200 shadow-lg bg-base-100">
           <p>{query?.response}</p>{" "}
+          <FavoriteButton
+            favoritesArr={user?.favorites}
+            favorite={user?.favorites?.includes(query?.id)}
+            id={query?.id}
+            userId={user?.id}
+          />
         </div>
         <div className="self-start flex justify-center items-center  mt-2">
           {" "}
@@ -47,7 +71,12 @@ export default async function QueryPage({ params }) {
                 </div>
               );
             })}{" "}
-          <LikeButton likes={query?.likes} />
+          <LikeButton
+            likes={query?.likes}
+            id={query?.id}
+            userLiked={user?.likes?.includes(query?.id)}
+            user={user}
+          />
         </div>
       </div>
     </div>

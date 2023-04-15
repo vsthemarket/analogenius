@@ -2,6 +2,7 @@ import supabaseServerClient from "@/utils/supabase-server";
 import Link from "next/link";
 import { tagConverter } from "@/utils/tagConverter";
 import SignOutButton from "@/components/SignOutButton";
+import LikeButton from "@/components/LikeButton";
 
 async function getUser(supabase) {
   const { data, error } = await supabase.auth.getUser();
@@ -24,20 +25,8 @@ async function getUser(supabase) {
 async function getFavorites(supabase, user) {
   const { data, error } = await supabase
     .from("queries")
-    .select("id, concept, analog, tags")
+    .select("id, concept, analog, tags, likes")
     .in("id", user?.favorites);
-  if (error) {
-    console.log(error);
-    return [];
-  }
-  return data;
-}
-
-async function getQueries(supabase, favorites) {
-  const { data, error } = await supabase
-    .from("queries")
-    .select("id, concept, analog, tags")
-    .in("id", favorites);
   if (error) {
     console.log(error);
     return [];
@@ -64,35 +53,51 @@ export default async function profile() {
         <thead>
           <tr>
             <th>Concept</th>
-            <th>Analog</th>
+
             <th>Tags</th>
+            <th>Likes</th>
           </tr>
         </thead>
         <tbody>
-          {queries.map((query, idx) => {
-            return (
-              <tr key={idx} className="hover cursor-pointer">
-                <td>
-                  <Link href={`/search/${query.id}`}>{query?.concept}</Link>
-                </td>
+          {queries
+            .sort((a, b) => b.likes - a.likes)
+            .map((query, idx) => {
+              return (
+                <tr key={idx} className="hover cursor-pointer">
+                  <td>
+                    <Link href={`/search/${query.id}`}>{query?.concept}</Link>
+                  </td>
 
-                <td>{query?.analog}</td>
-                <td>
-                  {query?.tags?.map((tag, idx) => {
-                    return (
-                      <div
-                        key={idx}
-                        className=" h-12 w-12 ml-2 mr-2 text-2xl rounded-md bg-base-100 flex justify-center items-center shadow-md"
-                      >
-                        {" "}
-                        <p>{tagConverter[tag]}</p>{" "}
-                      </div>
-                    );
-                  })}{" "}
-                </td>
-              </tr>
-            );
-          })}
+                  <td>
+                    {query?.tags?.map((tag, idx) => {
+                      return (
+                        <div
+                          key={idx}
+                          className=" h-12 w-12 ml-2 mr-2 text-2xl rounded-md bg-base-100 flex justify-center items-center shadow-md"
+                        >
+                          {" "}
+                          <p>
+                            {
+                              tagConverter[
+                                tag.split(" ").join("").toLowerCase()
+                              ]
+                            }
+                          </p>{" "}
+                        </div>
+                      );
+                    })}{" "}
+                  </td>
+                  <td>
+                    <LikeButton
+                      likes={query?.likes}
+                      user={user}
+                      id={query.id}
+                      userLiked={user?.likes?.includes(query?.id)}
+                    />
+                  </td>
+                </tr>
+              );
+            })}
         </tbody>
       </table>
     </div>

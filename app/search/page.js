@@ -11,14 +11,33 @@ async function getQueries(supabase) {
   }
   return data;
 }
+async function getUser(supabase) {
+  const { data, error } = await supabase.auth.getUser();
+  if (error) {
+    console.log(error);
+    return null;
+  }
+  const { data: userData, error: userError } = await supabase
+    .from("profiles")
+    .select("*")
+    .eq("email", data.user.email);
+
+  if (userError) {
+    console.log(userError);
+    return null;
+  }
+  return userData[0];
+}
 
 export default async function search() {
   const supabase = supabaseServerClient();
-  const queries = await getQueries(supabase);
+  const userData = getUser(supabase);
+  const queriesData = getQueries(supabase);
+  const [user, queries] = await Promise.all([userData, queriesData]);
   return (
     <>
       <div className="overflow-x-auto w-full flex flex-col justify-center items-center">
-        <QueryList queries={queries} />
+        <QueryList queries={queries} user={user} />
       </div>
     </>
   );

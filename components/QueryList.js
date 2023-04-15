@@ -4,8 +4,9 @@ import { useState } from "react";
 import { tagConverter } from "@/utils/tagConverter";
 import LikeButton from "./LikeButton";
 
-export default function QueryList({ queries }) {
+export default function QueryList({ queries, user }) {
   const [search, setSearch] = useState("");
+
   const [filteredQueries, setFilteredQueries] = useState(queries);
   const [selectedFilter, setSelectedFilter] = useState("concept");
 
@@ -16,18 +17,22 @@ export default function QueryList({ queries }) {
           type="text"
           onChange={(e) => {
             if (selectedFilter === "concept") {
-              setSearch(e.target.value);
+              if (e.target.value === "") setFilteredQueries(queries);
+              const newSearch = e.target.value;
+              setSearch(newSearch);
               setFilteredQueries(
                 queries.filter((query) =>
-                  query.concept.toLowerCase().includes(search.toLowerCase())
+                  query.concept.toLowerCase().includes(newSearch.toLowerCase())
                 )
               );
             }
             if (selectedFilter === "analog") {
-              setSearch(e.target.value);
+              if (e.target.value === "") setFilteredQueries(queries);
+              const newSearch = e.target.value;
+              setSearch(newSearch);
               setFilteredQueries(
                 queries.filter((query) =>
-                  query.analog.toLowerCase().includes(search.toLowerCase())
+                  query.analog.toLowerCase().includes(newSearch.toLowerCase())
                 )
               );
             }
@@ -107,7 +112,12 @@ export default function QueryList({ queries }) {
                     })}{" "}
                   </td>
                   <td>
-                    <LikeButton likes={query?.likes} />
+                    <LikeButton
+                      likes={query?.likes}
+                      user={user}
+                      id={query.id}
+                      userLiked={user?.likes?.includes(query?.id)}
+                    />
                   </td>
                 </tr>
               );
