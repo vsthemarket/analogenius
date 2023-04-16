@@ -1,6 +1,4 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
-
-## Analogenius
+# Analogenius
 
 ### Analogenius is a tool powered by OpenAIs chat completion api that allows users to learn difficult concepts with easy to understand analogies to what they already know best. 
 
