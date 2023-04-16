@@ -3,8 +3,10 @@ import Link from "next/link";
 import { useState } from "react";
 import { tagConverter } from "@/utils/tagConverter";
 import LikeButton from "./LikeButton";
+import { useRouter } from "next/navigation";
 
 export default function QueryList({ queries, user }) {
+  const router = useRouter();
   const [search, setSearch] = useState("");
 
   const [filteredQueries, setFilteredQueries] = useState(queries);
@@ -87,7 +89,13 @@ export default function QueryList({ queries, user }) {
             .sort((a, b) => b.likes - a.likes)
             .map((query, idx) => {
               return (
-                <tr key={idx} className="hover cursor-pointer">
+                <tr
+                  key={idx}
+                  className="hover cursor-pointer"
+                  onClick={() => {
+                    router.push(`/search/${query.id}`);
+                  }}
+                >
                   <td>
                     <Link href={`/search/${query.id}`}>{query?.concept}</Link>
                   </td>
@@ -116,7 +124,9 @@ export default function QueryList({ queries, user }) {
                       likes={query?.likes}
                       user={user}
                       id={query.id}
-                      userLiked={user?.likes?.includes(query?.id)}
+                      userLiked={
+                        user?.likes && user?.likes?.includes(query?.id)
+                      }
                     />
                   </td>
                 </tr>

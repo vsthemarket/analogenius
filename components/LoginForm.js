@@ -1,12 +1,13 @@
 "use client";
-import { Auth } from "@supabase/auth-ui-react";
-import { ThemeSupa } from "@supabase/auth-ui-shared";
+
 import { useSupabase } from "@/app/supabase-provider";
 import { useState } from "react";
+import SuccessToast from "./SuccessToast";
 
 export default function LoginForm({ user }) {
   const { supabase } = useSupabase();
   const [email, setEmail] = useState("");
+  const [signedUp, setSignedUp] = useState(true);
   const signInWithMagicLink = async (email) => {
     const { data, error } = await supabase.auth.signInWithOtp({
       email,
@@ -14,24 +15,34 @@ export default function LoginForm({ user }) {
         emailRedirectTo: "localhost:3000/",
       },
     });
+    if (error) console.log(error);
+    if (data) {
+      setSignedUp(true);
+      console.log(data);
+    }
   };
 
   return (
     <>
       {!user && (
-        <div className="flex flex-col justify-center items-start gap-5">
-          <h1>Sign in with email magic link</h1>
-          <input
-            type="email"
-            placeholder="Email"
-            onChange={(e) => setEmail(e.target.value)}
-            value={email}
-            className="input input-bordered input-primary w-full max-w-xs mt-5"
-          />
-          <button onClick={() => signInWithMagicLink(email)} className="btn">
-            Get Magic Link
-          </button>
-        </div>
+        <>
+          <div className="flex flex-col justify-center items-start gap-5">
+            {signedUp && (
+              <SuccessToast msg="You have successfully signed up. Check your email for a magic link!" />
+            )}{" "}
+            <h1>Sign in with email magic link</h1>
+            <input
+              type="email"
+              placeholder="Email"
+              onChange={(e) => setEmail(e.target.value)}
+              value={email}
+              className="input input-bordered input-primary w-full max-w-xs "
+            />
+            <button onClick={() => signInWithMagicLink(email)} className="btn">
+              Get Magic Link
+            </button>
+          </div>
+        </>
       )}
       {user && (
         <div className="flex flex-col justify-center items-start">
@@ -40,21 +51,5 @@ export default function LoginForm({ user }) {
         </div>
       )}
     </>
-    // <Auth
-    //   supabaseClient={supabase}
-    //   appearance={{
-    //     theme: ThemeSupa,
-    //     variables: {
-    //       default: {
-    //         colors: {
-    //           brandAccent: "rgb(244 114 182)",
-    //           brand: "bg-base-200",
-    //           inputBackground: "rgb(255 255 255)",
-    //         },
-    //       },
-    //     },
-    //   }}
-    //   providers={["google"]}
-    // />
   );
 }

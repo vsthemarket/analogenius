@@ -1,6 +1,7 @@
 "use client";
+import { useSupabase } from "@/app/supabase-provider";
 
-export default function queryForm({ setLoading }) {
+export default function QueryForm({ setLoading, setQueryResponse, user }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -16,13 +17,14 @@ export default function queryForm({ setLoading }) {
     });
     if (res.ok) {
       setLoading(false);
+      const json = await res.json();
+      console.log(json.data);
+      setQueryResponse(json.data);
     }
     if (res.error) {
       setLoading(false);
       console.log(json.error);
     }
-
-    console.log(res);
   };
   return (
     <form className="mt-10" onSubmit={handleSubmit}>
@@ -66,7 +68,7 @@ export default function queryForm({ setLoading }) {
             <option>Dance</option>
           </select>
         </div>
-        <input type="hidden" name="email" value="bry7100@gmail.com" />
+        <input type="hidden" name="email" value={user.email} />
         <input type="submit" value="Submit" className="btn" />
       </div>
     </form>

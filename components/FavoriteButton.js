@@ -15,7 +15,9 @@ export default function LikeButton({
     setLoading(true);
     const { data, error } = await supabase
       .from("profiles")
-      .update({ favorites: favoritesArr.filter((fav) => fav !== id) })
+      .update({
+        favorites: favoritesArr ? favoritesArr.filter((fav) => fav !== id) : [],
+      })
       .eq("id", userId)
       .select("*")
       .single();
@@ -33,7 +35,7 @@ export default function LikeButton({
     setLoading(true);
     const { data, error } = await supabase
       .from("profiles")
-      .update({ favorites: [...favoritesArr, id] })
+      .update({ favorites: favoritesArr ? [...favoritesArr, id] : [id] })
       .eq("id", userId);
 
     if (error) {

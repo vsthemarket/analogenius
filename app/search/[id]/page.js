@@ -74,7 +74,7 @@ export default async function QueryPage({ params }) {
           <LikeButton
             likes={query?.likes}
             id={query?.id}
-            userLiked={user?.likes?.includes(query?.id)}
+            userLiked={user?.likes && user?.likes?.includes(query?.id)}
             user={user}
           />
         </div>

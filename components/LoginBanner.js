@@ -25,8 +25,8 @@ export default function LoginBanner({ user }) {
         </svg>
         <p className="text-start">
           Create an account and sign in to take advantage of Analogenius best
-          features, such as saving your favorite responses, creating your own
-          analogs, and adding a like to responses generate by other users!
+          features, such as saving your favorite responses and adding a like to
+          responses generate by other users!
         </p>
         <Link href="/login">
           {" "}

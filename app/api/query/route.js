@@ -1,6 +1,7 @@
 import { createRouteHandlerSupabaseClient } from "@supabase/auth-helpers-nextjs";
 import { headers, cookies } from "next/headers";
 import { Configuration, OpenAIApi } from "openai";
+import { NextResponse } from "next/server";
 
 const config = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
@@ -26,7 +27,7 @@ export async function POST(req, res) {
   const { concept, analog, email } = await req.json();
   const prompt = `you are an expert at breaking down complex topics in simple terms. I will ask you to explain a topic or idea in the terms of something else, meaning you will use an analogy from the activity/occupation i give you to explain the concept. your response will be just a parargraph and won't contain any filler language or such as - sure, I can do that!  or I hope this helps or certainly! - explain ${concept} to me in simple terms using ${analog} as an analogy`;
 
-  //select users favorites array from db
+  // select users favorites array from db
   const { data: favoritesArr, error: favoritesError } = await supabase
     .from("profiles")
     .select("favorites")
@@ -49,14 +50,17 @@ export async function POST(req, res) {
     .single();
 
   // after inserting the query to db, update user's favorites array with the new query id
+
   const { data: userData, error: userError } = await supabase
     .from("profiles")
     .update({
-      favorites: favoritesArr
+      favorites: favoritesArr.favorites
         ? [...favoritesArr.favorites, data.id]
         : [data.id],
     })
     .eq("email", email);
 
-  return new Response({ data });
+  return NextResponse.json({
+    data,
+  });
 }
