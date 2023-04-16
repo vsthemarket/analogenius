@@ -2,6 +2,8 @@
 
 ### Analogenius is a tool powered by OpenAI's chat completion api that allows users to learn difficult concepts with easy to understand analogies to what they already know best. 
 
+![Screen Recording 2023-04-16 at 03 42 01 PM](https://user-images.githubusercontent.com/99948055/232341137-038f24d3-01d8-4819-bde4-545408a78738.gif)
+
 ## Tech:
 
 Analogenius is built with Next.js and Supabase, the OpenAI chat completion endpoint, and uses TailwindCSS with the daisyUI plugin for styling. I elected to use the new Next.js 13 app directory to learn more about using server/client components and other new features such as the updated route handler for easily creating REST endpoints. I used Supabase for user auth, a postgreSQL database, and the convenient REST api that is provided for creating, reading, and updating data. 
