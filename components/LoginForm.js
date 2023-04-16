@@ -7,6 +7,7 @@ import ErrorToast from "./ErrorToast";
 
 export default function LoginForm({ user }) {
   const { supabase } = useSupabase();
+  const frontendUrl = process.env.NEXT_PUBLIC_FRONTEND_URL;
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -16,7 +17,7 @@ export default function LoginForm({ user }) {
     const { data, error } = await supabase.auth.signInWithOtp({
       email,
       options: {
-        emailRedirectTo: "localhost:3000/",
+        emailRedirectTo: frontendUrl || "http://localhost:3000",
       },
     });
     if (error) {
