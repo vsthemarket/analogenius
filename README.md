@@ -1,6 +1,6 @@
 # Analogenius
 
-### Analogenius is a tool powered by OpenAIs chat completion api that allows users to learn difficult concepts with easy to understand analogies to what they already know best. 
+### Analogenius is a tool powered by OpenAI's chat completion api that allows users to learn difficult concepts with easy to understand analogies to what they already know best. 
 
 ## Tech:
 
