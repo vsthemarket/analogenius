@@ -37,7 +37,10 @@ export default function Navigation({ user }) {
             </li>
           </ul>
         </div>
-        <a className="cursor-pointer normal-case text-2xl lg:text-4xl pl-2 lg:pl-5">
+        <a
+          href="/"
+          className="cursor-pointer normal-case text-2xl lg:text-4xl pl-2 lg:pl-5"
+        >
           {" "}
           🚀
         </a>
