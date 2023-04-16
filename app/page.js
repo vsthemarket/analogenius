@@ -23,7 +23,7 @@ export default async function HomePage() {
   const supabase = supabaseServerClient();
   const user = await getUser(supabase);
   return (
-    <div className="w-full justify-center items-center flex">
+    <div className="">
       <Home user={user} />
     </div>
   );

@@ -9,6 +9,7 @@ export default function LikeButton({ likes, userLiked = false, id, user }) {
   const { supabase } = useSupabase();
 
   const handleLike = async () => {
+    if (!user) return;
     setUpdating(true);
     setLiked(true);
     setNumOfLikes((prev) => prev + 1);
@@ -32,6 +33,7 @@ export default function LikeButton({ likes, userLiked = false, id, user }) {
     setUpdating(false);
   };
   const handleUnlike = async () => {
+    if (!user) return;
     setUpdating(true);
     setLiked(false);
     setNumOfLikes((prev) => prev - 1);

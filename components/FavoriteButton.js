@@ -46,6 +46,7 @@ export default function LikeButton({
     setLoading(false);
     setFavorited(true);
   };
+
   return (
     <div>
       <button

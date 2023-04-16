@@ -26,13 +26,16 @@ export async function POST(req, res) {
   // get concept, analog and email from req body
   const { concept, analog, email } = await req.json();
   const prompt = `you are an expert at breaking down complex topics in simple terms. I will ask you to explain a topic or idea in the terms of something else, meaning you will use an analogy from the activity/occupation i give you to explain the concept. your response will be just a parargraph and won't contain any filler language or such as - sure, I can do that!  or I hope this helps or certainly! - explain ${concept} to me in simple terms using ${analog} as an analogy`;
-
+  let favoritesArr;
+  let favoritesError;
   // select users favorites array from db
-  const { data: favoritesArr, error: favoritesError } = await supabase
-    .from("profiles")
-    .select("favorites")
-    .eq("email", email)
-    .single();
+  if (!!email) {
+    ({ data: favoritesArr, error: favoritesError } = await supabase
+      .from("profiles")
+      .select("favorites")
+      .eq("email", email)
+      .single());
+  }
 
   const response = await openai.createChatCompletion({
     model: "gpt-3.5-turbo",
@@ -50,15 +53,16 @@ export async function POST(req, res) {
     .single();
 
   // after inserting the query to db, update user's favorites array with the new query id
-
-  const { data: userData, error: userError } = await supabase
-    .from("profiles")
-    .update({
-      favorites: favoritesArr.favorites
-        ? [...favoritesArr.favorites, data.id]
-        : [data.id],
-    })
-    .eq("email", email);
+  if (!!email) {
+    const { data: userData, error: userError } = await supabase
+      .from("profiles")
+      .update({
+        favorites: favoritesArr.favorites
+          ? [...favoritesArr.favorites, data.id]
+          : [data.id],
+      })
+      .eq("email", email);
+  }
 
   return NextResponse.json({
     data,

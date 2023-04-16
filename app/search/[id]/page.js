@@ -34,9 +34,9 @@ async function getUser(supabase, email) {
 export default async function QueryPage({ params }) {
   const supabase = supabaseServerClient();
   const { data } = await supabase.auth.getUser();
-  const queryData = getQuery(supabase, params.id);
-  const userData = getUser(supabase, data.user.email);
-  const [query, user] = await Promise.all([queryData, userData]);
+  const query = await getQuery(supabase, params.id);
+  let user;
+  if (data?.user) user = await getUser(supabase, data.user.email);
 
   if (!query) {
     return <div>loading...</div>;
@@ -48,12 +48,14 @@ export default async function QueryPage({ params }) {
       <div className="flex justify-center items-center flex-col">
         <div className="w-full text-lg p-4  border border-base-200 shadow-lg bg-base-100">
           <p>{query?.response}</p>{" "}
-          <FavoriteButton
-            favoritesArr={user?.favorites}
-            favorite={user?.favorites?.includes(query?.id)}
-            id={query?.id}
-            userId={user?.id}
-          />
+          {user && (
+            <FavoriteButton
+              favoritesArr={user?.favorites}
+              favorite={user?.favorites?.includes(query?.id)}
+              id={query?.id}
+              userId={user?.id}
+            />
+          )}
         </div>
         <div className="self-start flex justify-center items-center  mt-2">
           {" "}

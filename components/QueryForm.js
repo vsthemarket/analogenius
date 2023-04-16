@@ -68,7 +68,7 @@ export default function QueryForm({ setLoading, setQueryResponse, user }) {
             <option>Dance</option>
           </select>
         </div>
-        <input type="hidden" name="email" value={user.email} />
+        <input type="hidden" name="email" value={user?.email || ""} />
         <input type="submit" value="Submit" className="btn" />
       </div>
     </form>

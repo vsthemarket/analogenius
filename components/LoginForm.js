@@ -3,21 +3,30 @@
 import { useSupabase } from "@/app/supabase-provider";
 import { useState } from "react";
 import SuccessToast from "./SuccessToast";
+import ErrorToast from "./ErrorToast";
 
 export default function LoginForm({ user }) {
   const { supabase } = useSupabase();
   const [email, setEmail] = useState("");
-  const [signedUp, setSignedUp] = useState(true);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [signedUp, setSignedUp] = useState(false);
   const signInWithMagicLink = async (email) => {
+    setLoading(true);
     const { data, error } = await supabase.auth.signInWithOtp({
       email,
       options: {
         emailRedirectTo: "localhost:3000/",
       },
     });
-    if (error) console.log(error);
+    if (error) {
+      setLoading(false);
+      setError("There was an error signing you up. Please try again.");
+      console.log(error);
+    }
     if (data) {
       setSignedUp(true);
+      setLoading(false);
       console.log(data);
     }
   };
@@ -28,8 +37,9 @@ export default function LoginForm({ user }) {
         <>
           <div className="flex flex-col justify-center items-start gap-5">
             {signedUp && (
-              <SuccessToast msg="You have successfully signed up. Check your email for a magic link!" />
+              <SuccessToast msg="Check your email for a magic link!" />
             )}{" "}
+            {error && <ErrorToast msg={error} />}
             <h1>Sign in with email magic link</h1>
             <input
               type="email"
@@ -38,7 +48,10 @@ export default function LoginForm({ user }) {
               value={email}
               className="input input-bordered input-primary w-full max-w-xs "
             />
-            <button onClick={() => signInWithMagicLink(email)} className="btn">
+            <button
+              onClick={() => signInWithMagicLink(email)}
+              className={`btn ${loading ? "loading" : ""}`}
+            >
               Get Magic Link
             </button>
           </div>
