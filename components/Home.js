@@ -19,7 +19,9 @@ export default function Home({ user }) {
         <div className="hero-content flex flex-col text-center max-w-7xl ">
           <div className="flex flex-col lg:flex-row border-b-2 border-pink-400 pb-5">
             <div className="max-w-xl flex justify-start flex-col items-start ">
-              <h1 className="text-5xl font-bold ">Welcome to Analogenius!</h1>
+              <h1 className="text-5xl font-bold ">
+                Welcome to <span className="text-gradient">Analogenius!</span>
+              </h1>
               <p className="py-6 text-start text-gray-300">
                 <em>
                   {" "}
