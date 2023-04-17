@@ -1,8 +1,9 @@
-# Analogenius
+# Analogenius - [Live Site](https://analogenius.vercel.app/)
 
 ### Analogenius is a tool powered by OpenAI's chat completion api that allows users to learn difficult concepts with easy to understand analogies to what they already know best. 
 
-![Screen Recording 2023-04-16 at 03 42 01 PM](https://user-images.githubusercontent.com/99948055/232341137-038f24d3-01d8-4819-bde4-545408a78738.gif)
+![Screen Recording 2023-04-16 at 07 20 02 PM](https://user-images.githubusercontent.com/99948055/232352265-64882e65-e3c8-47d6-985f-1c6dd4410e06.gif)
+
 
 ## Tech:
 
@@ -12,7 +13,7 @@ Analogenius is built with Next.js and Supabase, the OpenAI chat completion endpo
 
 On the home page, follow the steps provided to enter a concept you would like to learn and select an analog - some topic you are already familiar with that you would like to use as a comparison point - and Analogenius will generate a response that explains the concept in simple terms of the analog. 
 
-<img width="1491" alt="Screen Shot 2023-04-16 at 3 19 27 PM" src="https://user-images.githubusercontent.com/99948055/232339871-404f26d7-2b48-43d5-910c-6be9ba9ded00.png">
+<img width="1491" alt="Screen Shot 2023-04-16 at 7 20 26 PM" src="https://user-images.githubusercontent.com/99948055/232352224-caaefe7d-80fe-4efa-be44-e7af66566d02.png">
 
 You can see past generated responses on the `/search` page, where the relevant tags (an emoji demonstrating the comparison being used) as well as the number of likes that response has will be displayed. You can filter by "concept" or "analog" by selecting the corresponding radio button and typing in the search input.
 
