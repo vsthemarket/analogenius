@@ -33,6 +33,7 @@ export default function QueryForm({ setLoading, setQueryResponse, user }) {
         <p className="">I want to learn</p>
         <div>
           <input
+            required
             name="concept"
             type="text"
             placeholder="Concept to learn..."
