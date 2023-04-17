@@ -44,10 +44,10 @@ export default async function profile() {
   return (
     <div className="w-full justify-center items-center flex flex-col">
       <div className="flex justify-center  gap-5">
-        <h1 className="text-4xl mb-5">Hello, {user?.email}</h1>
+        <h1 className="text-xl md:text-4xl mb-5">Hello, {user?.email}</h1>
         <SignOutButton />
       </div>
-      <h2 className="text-2xl mb-5 text-gray-400">
+      <h2 className="text-lg md:text-2xl mb-5 text-gray-400">
         Your Favorites and Past Queries
       </h2>
       <FavoritesList queries={queries} user={user} />

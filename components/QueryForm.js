@@ -29,7 +29,7 @@ export default function QueryForm({ setLoading, setQueryResponse, user }) {
   return (
     <form className="mt-10" onSubmit={handleSubmit}>
       {/* Concept */}
-      <div className="flex justify-center items-center gap-5">
+      <div className="flex flex-col md:flex-row justify-center items-center gap-5">
         <p className="">I want to learn</p>
         <div>
           <input

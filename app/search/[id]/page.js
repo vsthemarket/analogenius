@@ -44,9 +44,9 @@ export default async function QueryPage({ params }) {
 
   return (
     <div className="flex flex-col justify-center items-center w-full lg:w-1/2 mb-5 max-w-7xl min-h-16">
-      <h1 className="text-5xl font-bold mb-5">{query?.concept}</h1>
+      <h1 className="text-3xl md:text-5xl font-bold mb-5">{query?.concept}</h1>
       <div className="flex justify-center items-center flex-col">
-        <div className="w-full text-lg p-4  border border-base-200 shadow-lg bg-base-100">
+        <div className="w-full text-sm md:text-lg p-4  border border-base-200 shadow-lg bg-base-100">
           <p>{query?.response}</p>{" "}
           {user && (
             <FavoriteButton

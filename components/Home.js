@@ -29,7 +29,7 @@ export default function Home({ user }) {
                   easy to understand analogies.
                 </em>
               </p>
-              <ol className="text-gray-300 list-decimal text-lg ">
+              <ol className="text-gray-300 list-decimal text-lg pl-2 md:pl-0">
                 <li className="text-start">
                   Input a topic you want to learn in the concept text box
                 </li>
