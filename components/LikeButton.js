@@ -65,7 +65,7 @@ export default function LikeButton({ likes, userLiked = false, id, user }) {
         liked ? handleUnlike() : handleLike();
       }}
       className={`${
-        liked ? "bg-slate-700" : ""
+        liked ? "bg-gray-200" : ""
       }  cursor-pointer h-12 w-12 ml-2 mr-2 text-2xl rounded-md bg-base-100 flex justify-center items-center shadow-md`}
     >
       {" "}
