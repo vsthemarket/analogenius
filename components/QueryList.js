@@ -51,7 +51,7 @@ export default function QueryList({ queries, user }) {
                 <input
                   type="radio"
                   name="radio-10"
-                  className="radio ml-2 checked:bg-pink-500"
+                  className="radio ml-2 checked:bg-black"
                   onChange={() => {
                     setSelectedFilter("concept");
                   }}
@@ -65,7 +65,7 @@ export default function QueryList({ queries, user }) {
                 <input
                   type="radio"
                   name="radio-10"
-                  className="radio ml-2 checked:bg-blue-500"
+                  className="radio ml-2 checked:bg-black"
                   onChange={() => setSelectedFilter("analog")}
                   checked={selectedFilter === "analog"}
                 />
@@ -75,12 +75,12 @@ export default function QueryList({ queries, user }) {
         </div>
       </div>
 
-      <table className="table table-zebra w-full max-w-7xl gap-2 p-5">
+      <table className="table table-zebra w-full max-w-7xl gap-2 p-5 border shadow-sm mb-5">
         {/* head */}
         <thead>
           <tr>
             <th>Concept</th>
-            <th>Tags</th>
+            <th className="hidden md:block">Tags</th>
             <th>Likes</th>
           </tr>
         </thead>
@@ -100,12 +100,12 @@ export default function QueryList({ queries, user }) {
                     <Link href={`/search/${query.id}`}>{query?.concept}</Link>
                   </td>
 
-                  <td>
+                  <td className="hidden md:block">
                     {query?.tags?.map((tag, idx) => {
                       return (
                         <div
                           key={idx}
-                          className=" h-12 w-12 ml-2 mr-2 text-2xl rounded-md bg-base-100 flex justify-center items-center shadow-md"
+                          className=" h-12 p-2 w-fit  ml-2 mr-2 text-2xl rounded-md bg-base-100 flex justify-center items-center shadow-md"
                         >
                           {" "}
                           <p>

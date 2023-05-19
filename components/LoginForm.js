@@ -41,7 +41,7 @@ export default function LoginForm({ user }) {
               <SuccessToast msg="Check your email for a magic link!" />
             )}{" "}
             {error && <ErrorToast msg={error} />}
-            <h1>Sign in with email magic link</h1>
+            <h1 className="text-xl font-bold">Sign in with email magic link</h1>
             <input
               type="email"
               placeholder="Email"

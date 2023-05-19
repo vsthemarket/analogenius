@@ -1,84 +1,114 @@
-"use client";
 import Image from "next/image";
-import QueryForm from "./QueryForm";
-import { useState } from "react";
-import LoadingScreen from "./LoadingScreen";
-import SuccessToast from "./SuccessToast";
-import ErrorToast from "./ErrorToast";
-import { tagConverter } from "../utils/tagConverter";
+import Link from "next/link";
 
 export default function Home({ user }) {
-  const [queryResponse, setQueryResponse] = useState(null);
-  const [loading, setLoading] = useState(false);
-  // create array called tags with dfferent emojis for values
-  const tags = ["⛳️", "🎣", "🏀"];
   return (
-    <div className="w-full flex justify-center items-center">
-      {loading && <LoadingScreen />}
-      {!queryResponse && (
-        <div className="hero-content flex flex-col text-center max-w-7xl ">
-          <div className="flex flex-col lg:flex-row border-b-2 border-pink-400 pb-5">
-            <div className="max-w-xl flex justify-start flex-col items-start ">
-              <h1 className="text-5xl font-bold ">
-                Welcome to <span className="text-gradient">Analogenius!</span>
-              </h1>
-              <p className="py-6 text-start text-gray-300">
-                <em>
-                  {" "}
-                  An AI-powered tool that teaches you difficult concepts with
-                  easy to understand analogies.
-                </em>
-              </p>
-              <ol className="text-gray-300 list-decimal text-lg pl-2 md:pl-0">
-                <li className="text-start">
-                  Input a topic you want to learn in the concept text box
-                </li>
-                <li className="text-start">
-                  Pick an analog with a hobby/occupation/thing you are familiar
-                  with
-                </li>
-                <li className="text-start">
-                  Soak in the knowledge as the power of AI is harnessed to help
-                  you better understand complex ideas with simple analogies
-                </li>
-              </ol>
-            </div>
+    <div className="hero-content flex flex-col text-center max-w-7xl ">
+      <div className="flex flex-col lg:flex-row border-b-2 border-gray-700 mb-10 pb-10">
+        <div className="max-w-6xl flex justify-start flex-col items-start ">
+          <div className="mb-10">
+            <h1 className="text-5xl text-start font-bold ">
+              Welcome to <span className="text-gradient">Analogenius!</span>{" "}
+            </h1>
+            <h3 className="text-2xl font-medium text-start text-gray-700">
+              navigate to the{" "}
+              <Link className="text-indigo-400" href="/learn">
+                Learn
+              </Link>{" "}
+              tab to get started or read on to learn more about how to use the
+              app!
+            </h3>
           </div>
-          <div>
-            <QueryForm
-              setLoading={setLoading}
-              setQueryResponse={setQueryResponse}
-              user={user}
-            />
-          </div>
-        </div>
-      )}
-      {queryResponse && (
-        <div className="flex flex-col text-center justify-center items-center w-full lg:w-1/2 mb-5 max-w-7xl min-h-16">
-          <h1 className="text-5xl font-bold mb-5">{queryResponse?.concept}</h1>
-          <div className="flex justify-center items-center flex-col">
-            <div className="w-full text-lg p-4  border border-base-200 shadow-lg bg-base-100">
-              <p>{queryResponse?.response}</p>{" "}
-            </div>
-            <div className="self-start flex justify-center items-center  mt-2">
+
+          <h2 className="mb-5 text-gray-600 text-lg md:text-xl text-start">
+            <em>
               {" "}
-              {queryResponse?.tags.map((tag, idx) => {
-                return (
-                  <div
-                    key={idx}
-                    className=" h-12 w-12 ml-2 mr-2 text-2xl rounded-md bg-base-100 flex justify-center items-center shadow-md"
-                  >
-                    {" "}
-                    <p>
-                      {tagConverter[tag.split(" ").join("").toLowerCase()]}
-                    </p>{" "}
-                  </div>
-                );
-              })}{" "}
-            </div>
-          </div>
+              Analogenius is an AI-powered tool that teaches you difficult
+              technical concepts with easy to understand analogies. Sometimes,
+              ideas or concepts in tech are just difficult to grasp. You can use
+              Analogenius to better supercharge your learning in 3 easy steps
+            </em>
+          </h2>
+
+          <ul className="text-gray-300 hidden md:flex flex-col   gap-5 list-none text-lg pl-2 md:pl-0">
+            <li className="text-start w-full  flex-1 bg-gray-700 hover:bg-black hover:-translate-x-1 hover:translate-y-1 ease-in-out duration-75">
+              <div className=" flex gap-5 bg-gray-200 border-gray-600 border-2 flex-col p-2 h-full w-full hover:translate-x-2 hover:-translate-y-2 ease-in-out duration-75">
+                <h3 className="font-medium text-5xl text-emerald-500">1 </h3>
+                <p className="text-gray-600 text-xl">
+                  on the{" "}
+                  <Link className="text-indigo-400" href="/learn">
+                    Learn
+                  </Link>{" "}
+                  tab, input a topic you want to better understand in the
+                  concept text box: the more specific the better!
+                </p>
+                <div className="flex flex-col lg:flex-row">
+                  <Image
+                    src="/step-1.png"
+                    className="object-contain border-indigo-400 border-2"
+                    width={700}
+                    height={300}
+                    alt="demo of input box on learn page"
+                  />
+                </div>
+              </div>
+            </li>
+            <li className="text-start w-full flex-1 bg-gray-700 hover:bg-black hover:-translate-x-1 hover:translate-y-1 ease-in-out duration-75 ">
+              <div className="bg-gray-200 p-2 border-gray-600 border-2 flex flex-col  gap-5 h-full w-full text-black hover:translate-x-2 hover:-translate-y-2 ease-in-out duration-75">
+                <h3 className="font-medium text-5xl text-emerald-500">2</h3>
+                <p className="text-gray-600 text-xl">
+                  then pick something you are familiar with to be used as an
+                  analogy: could be a TV Show, a sport, or something entirely
+                  different
+                </p>
+                <div className="flex gap-2 flex-col lg:flex-row">
+                  <Image
+                    src="/step-2.png"
+                    className="object-contain border-indigo-400 border-2"
+                    width={700}
+                    height={300}
+                    alt="demo of categories and analogy selection on learn page"
+                  />
+                </div>
+              </div>
+            </li>
+            <li className="text-start   w-full flex-1  bg-gray-700 hover:bg-black hover:-translate-x-1 hover:translate-y-1 ease-in-out duration-75">
+              <div className="bg-gray-200 p-2 h-full  border-2 border-gray-600  w-full flex flex-col gap-5 text-black hover:translate-x-2 hover:-translate-y-2 ease-in-out duration-75">
+                <h3 className="font-medium text-5xl text-emerald-500">3 </h3>
+                <p className="text-gray-600 text-xl">
+                  finally, soak in the knowledge as the power of AI is harnessed
+                  to help you better understand complex ideas with simple
+                  analogies
+                </p>
+                <div className="flex flex-col lg:flex-row gap-2">
+                  <Image
+                    src="/airesponse.png"
+                    className="object-contain border-indigo-400 border-2"
+                    width={700}
+                    height={300}
+                    alt="demo of AI response to user query"
+                  />
+                </div>
+              </div>
+            </li>
+          </ul>
         </div>
-      )}
+      </div>
+      <div className="flex flex-col gap-5 max-w-2xl ">
+        <h3 className="text-2xl font-bold mb-5">
+          Get started leraning new things now! Or navigate to the{" "}
+          <Link href="/search" className="text-indigo-400">
+            Search
+          </Link>{" "}
+          tab to see a list of past queries made by other users.
+        </h3>
+        <Link
+          className="h-8 mb-5 lg:h-10 font-medium text-lg flex justify-center items-center text-white hover:bg-indigo-400 bg-indigo-500 "
+          href="/learn"
+        >
+          Give it a try!
+        </Link>
+      </div>
     </div>
   );
 }

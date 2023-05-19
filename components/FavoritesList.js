@@ -38,7 +38,7 @@ export default function FavoritesList({ queries, user }) {
                     return (
                       <div
                         key={idx}
-                        className=" h-12 w-12 ml-2 mr-2 text-2xl rounded-md bg-base-100 flex justify-center items-center shadow-md"
+                        className=" h-12 p-2 w-fit  ml-2 mr-2 text-2xl rounded-md bg-base-100 flex justify-center items-center shadow-md"
                       >
                         {" "}
                         <p>
