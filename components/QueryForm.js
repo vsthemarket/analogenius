@@ -12,7 +12,6 @@ export default function QueryForm({
   const [concept, setConcept] = useState("");
   const formRef = useRef(null);
   const [error, setError] = useState("");
-  console.log(formRef.current);
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);

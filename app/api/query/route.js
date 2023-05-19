@@ -25,7 +25,7 @@ export async function POST(req, res) {
   });
   // get concept, analog and email from req body
   const { concept, analog, email } = await req.json();
-  const prompt = `you are an expert at breaking down complex topics in simple terms. I will ask you to explain a topic or idea in the terms of something else, meaning you will use an analogy from the hobby, sport, subject, or thing i give you to explain the concept. your response will be a couple parargraphs, and it won't contain any filler language or such as - sure, I can do that!  or I hope this helps or certainly!  the second paragraph of your response will go into more detail. also, assume the concept is related to technology, science, math - explain ${concept} to me in simple terms using ${analog} as an analogy`;
+  const prompt = `you are an expert at breaking down complex topics in simple terms. I will ask you to explain a topic or idea in the terms of something else, meaning you will use an analogy from the hobby, sport, subject, or thing i give you to explain the concept. your response will be two parargraphs, and it won't contain any filler language or such as - sure, I can do that!  or I hope this helps or certainly!  the second paragraph of your response will go into more detail. also, assume the concept is related to technology, science, math - explain ${concept} to me in simple terms using ${analog} as an analogy`;
   let favoritesArr;
   let favoritesError;
   // select users favorites array from db
