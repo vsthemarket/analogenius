@@ -31,19 +31,17 @@ export default function Home({ user }) {
           </h2>
 
           <ul className="text-gray-300 hidden md:flex flex-col   gap-5 list-none text-lg pl-2 md:pl-0">
-            <li className="text-start w-full  flex-1 bg-gray-700 hover:bg-black pl-1 pb-1 ">
-              <div className="bg-base-100 flex gap-5 flex-col p-2 h-full w-full hover:translate-x-1 hover:-translate-y-1">
-                <h3 className="font-medium text-2xl  text-black">
-                  Step One:{" "}
-                  <span className="text-gray-600">
-                    on the{" "}
-                    <Link className="text-indigo-400" href="/learn">
-                      Learn
-                    </Link>{" "}
-                    tab, input a topic you want to better understand in the
-                    concept text box: the more specific the better!
-                  </span>
-                </h3>
+            <li className="text-start w-full  flex-1 bg-gray-700 hover:bg-black hover:-translate-x-1 hover:translate-y-1 ease-in-out duration-75">
+              <div className=" flex gap-5 bg-gray-200 border-gray-600 border-2 flex-col p-2 h-full w-full hover:translate-x-2 hover:-translate-y-2 ease-in-out duration-75">
+                <h3 className="font-medium text-5xl text-emerald-500">1 </h3>
+                <p className="text-gray-600 text-xl">
+                  on the{" "}
+                  <Link className="text-indigo-400" href="/learn">
+                    Learn
+                  </Link>{" "}
+                  tab, input a topic you want to better understand in the
+                  concept text box: the more specific the better!
+                </p>
                 <div className="flex flex-col lg:flex-row">
                   <Image
                     src="/step-1.png"
@@ -55,16 +53,14 @@ export default function Home({ user }) {
                 </div>
               </div>
             </li>
-            <li className="text-start w-full flex-1 bg-gray-700 hover:bg-black pl-1 pb-1 ">
-              <div className="bg-base-100 p-2 flex flex-col gap-5 h-full w-full text-black hover:translate-x-1 hover:-translate-y-1">
-                <h3 className="font-medium text-2xl">
-                  Step Two:{" "}
-                  <span className="text-gray-600">
-                    then pick something you are familiar with to be used as an
-                    analogy: could be a TV Show, a sport, or something entirely
-                    different
-                  </span>
-                </h3>
+            <li className="text-start w-full flex-1 bg-gray-700 hover:bg-black hover:-translate-x-1 hover:translate-y-1 ease-in-out duration-75 ">
+              <div className="bg-gray-200 p-2 border-gray-600 border-2 flex flex-col  gap-5 h-full w-full text-black hover:translate-x-2 hover:-translate-y-2 ease-in-out duration-75">
+                <h3 className="font-medium text-5xl text-emerald-500">2</h3>
+                <p className="text-gray-600 text-xl">
+                  then pick something you are familiar with to be used as an
+                  analogy: could be a TV Show, a sport, or something entirely
+                  different
+                </p>
                 <div className="flex gap-2 flex-col lg:flex-row">
                   <Image
                     src="/step-2.png"
@@ -76,16 +72,14 @@ export default function Home({ user }) {
                 </div>
               </div>
             </li>
-            <li className="text-start   w-full flex-1 bg-gray-700 hover:bg-black pl-1 pb-1">
-              <div className="bg-base-100 p-2 h-full w-full flex flex-col gap-5 text-black hover:translate-x-1 hover:-translate-y-1">
-                <h3 className="font-medium text-2xl">
-                  Step Three:{" "}
-                  <span className="text-gray-600">
-                    finally, soak in the knowledge as the power of AI is
-                    harnessed to help you better understand complex ideas with
-                    simple analogies
-                  </span>
-                </h3>
+            <li className="text-start   w-full flex-1  bg-gray-700 hover:bg-black hover:-translate-x-1 hover:translate-y-1 ease-in-out duration-75">
+              <div className="bg-gray-200 p-2 h-full  border-2 border-gray-600  w-full flex flex-col gap-5 text-black hover:translate-x-2 hover:-translate-y-2 ease-in-out duration-75">
+                <h3 className="font-medium text-5xl text-emerald-500">3 </h3>
+                <p className="text-gray-600 text-xl">
+                  finally, soak in the knowledge as the power of AI is harnessed
+                  to help you better understand complex ideas with simple
+                  analogies
+                </p>
                 <div className="flex flex-col lg:flex-row gap-2">
                   <Image
                     src="/airesponse.png"
