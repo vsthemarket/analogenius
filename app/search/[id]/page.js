@@ -3,6 +3,8 @@ import supabaseServerClient from "@/utils/supabase-server";
 import { tagConverter } from "@/utils/tagConverter";
 import FavoriteButton from "@/components/FavoriteButton";
 
+export const revalidate = 0;
+
 async function getQuery(supabase, id) {
   const { data, error } = await supabase
     .from("queries")

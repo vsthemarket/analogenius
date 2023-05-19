@@ -3,6 +3,8 @@ import supabaseServerClient from "@/utils/supabase-server";
 import Link from "next/link";
 import QueryList from "@/components/QueryList";
 
+export const revalidate = 0;
+
 async function getQueries(supabase) {
   const { data, error } = await supabase.from("queries").select("*");
   if (error) {

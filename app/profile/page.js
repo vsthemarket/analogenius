@@ -6,6 +6,8 @@ import LikeButton from "@/components/LikeButton";
 import { useRouter } from "next/navigation";
 import FavoritesList from "@/components/FavoritesList";
 
+export const revalidate = 0;
+
 async function getUser(supabase) {
   const { data, error } = await supabase.auth.getUser();
   if (error) {
