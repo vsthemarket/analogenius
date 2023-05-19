@@ -1,4 +1,3 @@
-import QueryForm from "@/components/QueryForm";
 import Learn from "@/components/Learn";
 import supabaseServerClient from "@/utils/supabase-server";
 

@@ -8,7 +8,7 @@ export default function LoginBanner({ user }) {
   // if user is logged in, don't show the banner
   if (user) return <></>;
   return (
-    <div className="alert alter-info  shadow-lg">
+    <div className="alert alter-info border shadow-lg">
       <div>
         <svg
           xmlns="http://www.w3.org/2000/svg"

@@ -25,33 +25,50 @@ export default function Home({ user }) {
 
           <ul className="text-gray-300 flex flex-col lg:flex-row gap-5 list-none text-lg pl-2 md:pl-0">
             <li className="text-start w-full flex-1 bg-gray-700 hover:bg-black pl-1 pb-1 ">
-              <div className="bg-base-100 p-2 h-full w-full hover:translate-x-1 hover:-translate-y-1">
+              <div className="bg-base-100 flex flex-col p-2 h-full w-full hover:translate-x-1 hover:-translate-y-1">
                 <h3 className="font-medium text-black">Step One</h3>
-                <p className="text-black">
+                <Image
+                  src="/step-1.png"
+                  className="object-contain"
+                  width={500}
+                  height={100}
+                  alt="puppy"
+                />
+                <p className="self-end text-black">
                   Input a topic you want to learn in the concept text box
                 </p>{" "}
-                <Image src="/ai_puppy.png" width={50} height={50} alt="puppy" />
               </div>
             </li>
             <li className="text-start w-full flex-1 bg-gray-700 hover:bg-black pl-1 pb-1 ">
-              <div className="bg-base-100 p-2 h-full w-full text-black hover:translate-x-1 hover:-translate-y-1">
+              <div className="bg-base-100 p-2 flex flex-col h-full w-full text-black hover:translate-x-1 hover:-translate-y-1">
                 <h3 className="font-medium">Step Two</h3>
-                <p>
+                <Image
+                  src="/step-2.png"
+                  className="object-contain"
+                  width={450}
+                  height={100}
+                  alt="puppy"
+                />
+                <p className="self-end">
                   Pick an analog with a hobby/occupation/thing you are familiar
                   with
                 </p>{" "}
-                <Image src="/ai_puppy.png" width={50} height={50} alt="puppy" />
               </div>
             </li>
             <li className="text-start  w-full flex-1 bg-gray-700 hover:bg-black pl-1 pb-1">
               <div className="bg-base-100 p-2 h-full w-full text-black hover:translate-x-1 hover:-translate-y-1">
                 <h3 className="font-medium">Step Three</h3>
-
-                <p>
+                <Image
+                  src="/step-3.png"
+                  className="object-contain"
+                  width={450}
+                  height={100}
+                  alt="puppy"
+                />
+                <p className="self-end">
                   Soak in the knowledge as the power of AI is harnessed to help
                   you better understand complex ideas with simple analogies
                 </p>
-                <Image src="/ai_puppy.png" width={50} height={50} alt="puppy" />
               </div>
             </li>
           </ul>
