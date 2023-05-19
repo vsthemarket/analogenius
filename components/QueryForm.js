@@ -270,7 +270,9 @@ export default function QueryForm({
           type="submit"
           value={loading ? "Loading..." : "Submit"}
           disabled={loading}
-          className="btn bg-emerald-500 hover:bg-emerald-400 border-none mb-5"
+          className={`btn ${
+            loading ? "loading" : ""
+          } bg-emerald-500 hover:bg-emerald-400 border-none mb-5 `}
         />
       </div>
     </form>
