@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useSupabase } from "@/app/supabase-provider";
+import { useRouter } from "next/navigation";
 
 export default function LikeButton({
   favorite = false,
@@ -9,6 +10,7 @@ export default function LikeButton({
   userId,
 }) {
   const { supabase } = useSupabase();
+  const router = useRouter();
   const [favorited, setFavorited] = useState(favorite);
   const [loading, setLoading] = useState(false);
   const handleUnfavorite = async () => {
@@ -30,6 +32,7 @@ export default function LikeButton({
 
     setLoading(false);
     setFavorited(false);
+    router.refresh();
   };
   const handleFavorite = async () => {
     setLoading(true);
@@ -45,6 +48,7 @@ export default function LikeButton({
     }
     setLoading(false);
     setFavorited(true);
+    router.refresh();
   };
 
   return (

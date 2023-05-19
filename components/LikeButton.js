@@ -31,6 +31,7 @@ export default function LikeButton({ likes, userLiked = false, id, user }) {
       return;
     }
     setUpdating(false);
+    router.refresh();
   };
   const handleUnlike = async () => {
     if (!user) return;
@@ -57,6 +58,7 @@ export default function LikeButton({ likes, userLiked = false, id, user }) {
       return;
     }
     setUpdating(false);
+    router.refresh();
   };
   return (
     <div
