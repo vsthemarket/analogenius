@@ -44,6 +44,7 @@ export async function POST(req, res) {
   });
 
   const gptResponse = response.data.choices[0].message.content;
+
   const { data, error } = await supabase
     .from("queries")
     .insert([
@@ -52,6 +53,10 @@ export async function POST(req, res) {
     .select("*")
     .single();
 
+  if (error) {
+    console.log(error);
+    return NextResponse.error(error);
+  }
   // after inserting the query to db, update user's favorites array with the new query id
   if (!!email) {
     const { data: userData, error: userError } = await supabase
