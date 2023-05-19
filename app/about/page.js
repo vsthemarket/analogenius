@@ -8,12 +8,11 @@ export default async function about() {
         <div className="hero-content text-center">
           <div className="max-w-md">
             <h1 className="text-5xl font-bold">Hello!</h1>
-            <p className="py-6 text-gray-300">
+            <p className="py-6 md:text-lg text-start">
               Analogenius is an app that uses the power of AI to help you learn
-              concepts with simple analogies. I created this as a submission to
-              the Supabase Launch Week 7 Hackathon, and I hope you enjoy using
-              it as much as I enjoyed building it! Also, feel free to open an
-              issue or submit a pull request{" "}
+              concepts with simple analogies. I hope you enjoy using it as much
+              as I enjoyed building it! Also, feel free to open an issue or
+              submit a pull request{" "}
               <Link
                 href="https://github.com/lifeofbry19/analogenius"
                 className="text-indigo-400"

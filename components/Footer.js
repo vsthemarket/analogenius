@@ -13,13 +13,18 @@ export default function Footer() {
         />
         <p>
           Powered by{" "}
-          <Link href="https://supabase.com/" className=" text-indigo-400">
+          <Link
+            href="https://supabase.com/"
+            target="_blank"
+            className=" text-indigo-400"
+          >
             Supabase
           </Link>{" "}
           created by{" "}
           <Link
             href="https://github.com/lifeofbry19"
             className=" text-indigo-400"
+            target="_blank"
           >
             Bryant Young
           </Link>

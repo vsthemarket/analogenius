@@ -20,10 +20,10 @@ export default async function RootLayout({ children }) {
 
   return (
     <html lang="en">
-      <body>
+      <body className="bg-green-200">
         <SupabaseProvider>
           <Navigation user={user} />
-          <div className="flex flex-col justify-start items-center pt-20 gap-10 min-h-[calc(100vh-53px)] p-2  bg-base-200">
+          <div className="background-gradient flex flex-col justify-start items-center pt-20 gap-10 min-h-[calc(100vh-53px)] p-2  bg-base-200">
             <LoginBanner user={user} />
             {children}
           </div>

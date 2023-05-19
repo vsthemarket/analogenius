@@ -66,7 +66,10 @@ export default function Navigation({ user }) {
       </div>
       <div className="navbar-end pr-5">
         {!user && (
-          <Link className="btn" href="/login">
+          <Link
+            className="btn bg-emerald-500 hover:bg-emerald-400 border-none"
+            href="/login"
+          >
             Login
           </Link>
         )}

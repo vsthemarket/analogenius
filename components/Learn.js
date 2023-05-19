@@ -12,7 +12,7 @@ export default function Learn({ user }) {
   const [loading, setLoading] = useState(false);
 
   return (
-    <div className="w-full max-w-7xl">
+    <div className="w-full flex justify-center items-center max-w-7xl">
       {!queryResponse && (
         <div className=" flex flex-col max-w-7xl ">
           <QueryForm
@@ -32,11 +32,11 @@ export default function Learn({ user }) {
             </div>
             <div className="self-start flex justify-center items-center  mt-2">
               {" "}
-              {queryResponse?.tags.map((tag, idx) => {
+              {queryResponse?.tags?.map((tag, idx) => {
                 return (
                   <div
                     key={idx}
-                    className=" h-12 w-12 ml-2 mr-2 text-2xl rounded-md bg-base-100 flex justify-center items-center shadow-md"
+                    className=" h-12 p-2 w-fit ml-2 mr-2 text-2xl rounded-md bg-base-100 flex justify-center items-center shadow-md"
                   >
                     {" "}
                     <p>

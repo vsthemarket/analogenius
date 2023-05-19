@@ -18,25 +18,29 @@ export default function QueryForm({
     setLoading(true);
     const data = new FormData(e.target);
     const value = Object.fromEntries(data.entries());
-    console.log(value);
-    // const res = await fetch("/api/query", {
-    //   method: "POST",
-    //   body: JSON.stringify(value),
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    // });
-    // if (res.ok) {
-    //   setLoading(false);
-    //   const json = await res.json();
-    //   console.log(json.data);
-    //   setQueryResponse(json.data);
-    // }
-    // if (res.error) {
-    //   setLoading(false);
-    //   console.log(json.error);
-    //   setError(json.error);
-    // }
+
+    if (!value.analog) {
+      value.analog = "random";
+    }
+
+    const res = await fetch("/api/query", {
+      method: "POST",
+      body: JSON.stringify(value),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    if (res.ok) {
+      setLoading(false);
+      const json = await res.json();
+      console.log(json.data);
+      setQueryResponse(json.data);
+    }
+    if (res.error) {
+      setLoading(false);
+      console.log(res.error);
+      setError(res.error);
+    }
   };
   const handleAnalogSelect = (e) => {
     // loop over other options and set value to Pick an analogy
@@ -50,18 +54,39 @@ export default function QueryForm({
     setAnalog(e.target.value);
   };
   return (
-    <form className="mt-10" onSubmit={handleSubmit} ref={formRef}>
+    <form className="mt-5" onSubmit={handleSubmit} ref={formRef}>
       {/* Concept */}
 
       <div className="flex flex-col  gap-5">
-        <div className="flex flex-col justify-start items-start gap-5">
-          <h3 className="font-medium text-lg">
-            Write out the concept you want to learn (max 20 characters)
-          </h3>
+        <div className="flex flex-col justify-start items-start mb-5 lg:mb-10 gap-5">
+          <div className="">
+            <h3 className="font-medium text-xl lg:text-2xl">
+              Write out the concept you want to learn (max 30 characters)
+              <div
+                className="tooltip hover:tooltip-open inline-block"
+                data-tip="the more specific the topic, the better the analogy produced will be"
+              >
+                {" "}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  className="stroke-current flex-shrink-0 w-6 h-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  ></path>
+                </svg>
+              </div>
+            </h3>
+          </div>
           <div>
             <input
               required
-              maxLength="20"
+              maxLength="30"
               onChange={(e) => setConcept(e.target.value)}
               value={concept}
               name="concept"
@@ -73,11 +98,32 @@ export default function QueryForm({
         </div>
 
         {/* Analog */}
-        <div>
-          <h3 className="font-medium text-lg mb-5">
-            Pick a category and analogy to learn your concept with (limited to
-            one selection)
-          </h3>
+        <div className="mb-5 lg:mb-16 flex flex-col justify-start items-start">
+          <div className="">
+            <h3 className="font-medium text-xl lg:text-2xl mb-5">
+              Pick a category and analogy to learn your concept with (limited to
+              one selection, defaults to &quot;random&quot;)
+              <div
+                className="tooltip hover:tooltip-open inline-block"
+                data-tip="the more niche analogs will produce more detailed and helpful results"
+              >
+                {" "}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  className="stroke-current flex-shrink-0 w-6 h-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  ></path>
+                </svg>
+              </div>
+            </h3>
+          </div>
           <div className="flex flex-col gap-5 sm:flex-row flex-wrap ">
             {/* Categories */}
 
@@ -203,9 +249,8 @@ export default function QueryForm({
           </div>
         </div>
 
-        <div className="flex flex-col justify-start items-start gap-5 mb-5">
-          <h3 className="font-medium text-lg mb-2">Your Selection: </h3>
-          <p className="font-medium text-xl ">
+        <div className="flex flex-col justify-start items-start gap-5 mb-10">
+          <p className="mx-auto font-medium text-3xl ">
             I want to learn{" "}
             <span className=" border-teal-300 border-b-2 italic">
               {concept ? concept : "____"}
@@ -220,9 +265,11 @@ export default function QueryForm({
 
         {/* Submit */}
         <input type="hidden" name="email" value={user?.email || ""} />
+        {error && <p className="text-red-500">*{error}</p>}
         <input
           type="submit"
           value={loading ? "Loading..." : "Submit"}
+          disabled={loading}
           className="btn bg-emerald-500 hover:bg-emerald-400 border-none mb-5"
         />
       </div>
