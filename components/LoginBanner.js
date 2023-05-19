@@ -8,7 +8,7 @@ export default function LoginBanner({ user }) {
   // if user is logged in, don't show the banner
   if (user) return <></>;
   return (
-    <div className="alert alert-info shadow-lg">
+    <div className="alert alter-info  shadow-lg">
       <div>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -30,7 +30,7 @@ export default function LoginBanner({ user }) {
         </p>
         <Link href="/login">
           {" "}
-          <button className="btn btn-primary">Login</button>
+          <button className="btn btn-primary">Sign Up</button>
         </Link>
       </div>
     </div>

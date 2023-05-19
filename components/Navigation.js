@@ -30,6 +30,9 @@ export default function Navigation({ user }) {
               <Link href="/">Home</Link>
             </li>
             <li>
+              <Link href="/learn">Learn</Link>
+            </li>
+            <li>
               <Link href="/search">Search</Link>
             </li>
             <li>
@@ -46,9 +49,12 @@ export default function Navigation({ user }) {
         </a>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">
+        <ul className="menu menu-horizontal gap-2 px-1">
           <li>
             <Link href="/">Home</Link>
+          </li>
+          <li>
+            <Link href="/learn">Learn</Link>
           </li>
           <li>
             <Link href="/search">Search</Link>

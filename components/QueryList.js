@@ -51,7 +51,7 @@ export default function QueryList({ queries, user }) {
                 <input
                   type="radio"
                   name="radio-10"
-                  className="radio ml-2 checked:bg-pink-500"
+                  className="radio ml-2 checked:bg-black"
                   onChange={() => {
                     setSelectedFilter("concept");
                   }}
@@ -65,7 +65,7 @@ export default function QueryList({ queries, user }) {
                 <input
                   type="radio"
                   name="radio-10"
-                  className="radio ml-2 checked:bg-blue-500"
+                  className="radio ml-2 checked:bg-black"
                   onChange={() => setSelectedFilter("analog")}
                   checked={selectedFilter === "analog"}
                 />
@@ -75,7 +75,7 @@ export default function QueryList({ queries, user }) {
         </div>
       </div>
 
-      <table className="table table-zebra w-full max-w-7xl gap-2 p-5">
+      <table className="table table-zebra w-full max-w-7xl gap-2 p-5 border shadow-sm mb-5">
         {/* head */}
         <thead>
           <tr>
