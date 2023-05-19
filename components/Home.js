@@ -31,8 +31,8 @@ export default function Home({ user }) {
           </h2>
 
           <ul className="text-gray-300 hidden md:flex flex-col   gap-5 list-none text-lg pl-2 md:pl-0">
-            <li className="text-start w-full  flex-1 bg-gray-700 hover:bg-black hover:-translate-x-1 hover:translate-y-1 ease-in-out duration-75">
-              <div className=" flex gap-5 bg-gray-200 border-gray-600 border-2 flex-col p-2 h-full w-full hover:translate-x-2 hover:-translate-y-2 ease-in-out duration-75">
+            <li className="text-start w-full  flex-1  bg-black -translate-x-1 translate-y-1 ">
+              <div className=" flex gap-5 bg-gray-200 border-gray-600 border-2 flex-col p-2 h-full w-full translate-x-2 -translate-y-2 ">
                 <h3 className="font-medium text-5xl text-emerald-500">1 </h3>
                 <p className="text-gray-600 text-xl">
                   on the{" "}
@@ -53,8 +53,8 @@ export default function Home({ user }) {
                 </div>
               </div>
             </li>
-            <li className="text-start w-full flex-1 bg-gray-700 hover:bg-black hover:-translate-x-1 hover:translate-y-1 ease-in-out duration-75 ">
-              <div className="bg-gray-200 p-2 border-gray-600 border-2 flex flex-col  gap-5 h-full w-full text-black hover:translate-x-2 hover:-translate-y-2 ease-in-out duration-75">
+            <li className="text-start w-full flex-1  bg-black -translate-x-1 translate-y-1 ease-in-out duration-75 ">
+              <div className="bg-gray-200 p-2 border-gray-600 border-2 flex flex-col  gap-5 h-full w-full text-black translate-x-2 -translate-y-2 ease-in-out duration-75">
                 <h3 className="font-medium text-5xl text-emerald-500">2</h3>
                 <p className="text-gray-600 text-xl">
                   then pick something you are familiar with to be used as an
@@ -72,8 +72,8 @@ export default function Home({ user }) {
                 </div>
               </div>
             </li>
-            <li className="text-start   w-full flex-1  bg-gray-700 hover:bg-black hover:-translate-x-1 hover:translate-y-1 ease-in-out duration-75">
-              <div className="bg-gray-200 p-2 h-full  border-2 border-gray-600  w-full flex flex-col gap-5 text-black hover:translate-x-2 hover:-translate-y-2 ease-in-out duration-75">
+            <li className="text-start   w-full flex-1   bg-black -translate-x-1 translate-y-1 ">
+              <div className="bg-gray-200 p-2 h-full  border-2 border-gray-600  w-full flex flex-col gap-5 text-black translate-x-2 -translate-y-2 ">
                 <h3 className="font-medium text-5xl text-emerald-500">3 </h3>
                 <p className="text-gray-600 text-xl">
                   finally, soak in the knowledge as the power of AI is harnessed
