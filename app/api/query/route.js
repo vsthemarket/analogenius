@@ -69,7 +69,7 @@ export async function POST(req, res) {
       .eq("email", email);
   }
 
-  return NextResponse.status(200).json({
+  return NextResponse.json({
     data,
   });
 }
