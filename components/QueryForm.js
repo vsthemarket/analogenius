@@ -1,6 +1,7 @@
 "use client";
 import { useSupabase } from "@/app/supabase-provider";
 import { useState, useRef } from "react";
+import LoadingMessage from "./LoadingMessage";
 
 export default function QueryForm({
   loading,
@@ -22,24 +23,24 @@ export default function QueryForm({
       value.analog = "random";
     }
 
-    const res = await fetch("/api/query", {
-      method: "POST",
-      body: JSON.stringify(value),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    if (res.ok) {
-      setLoading(false);
-      const json = await res.json();
-      console.log(json.data);
-      setQueryResponse(json.data);
-    }
-    if (res.error) {
-      setLoading(false);
-      console.log(res.error);
-      setError(res.error);
-    }
+    // const res = await fetch("/api/query", {
+    //   method: "POST",
+    //   body: JSON.stringify(value),
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    // });
+    // if (res.ok) {
+    //   setLoading(false);
+    //   const json = await res.json();
+    //   console.log(json.data);
+    //   setQueryResponse(json.data);
+    // }
+    // if (res.error) {
+    //   setLoading(false);
+    //   console.log(res.error);
+    //   setError(res.error);
+    // }
   };
   const handleAnalogSelect = (e) => {
     // loop over other options and set value to Pick an analogy
@@ -262,6 +263,8 @@ export default function QueryForm({
           </p>
         </div>
 
+        {loading && <LoadingMessage />}
+
         {/* Submit */}
         <input type="hidden" name="email" value={user?.email || ""} />
         {error && <p className="text-red-500">*{error}</p>}
@@ -271,7 +274,7 @@ export default function QueryForm({
           disabled={loading}
           className={`btn ${
             loading ? "loading" : ""
-          } bg-emerald-500 hover:bg-emerald-400 border-none mb-5 `}
+          } bg-emerald-500 hover:bg-emerald-400 border-none mb-10`}
         />
       </div>
     </form>
