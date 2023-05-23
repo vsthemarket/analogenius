@@ -23,24 +23,24 @@ export default function QueryForm({
       value.analog = "random";
     }
 
-    // const res = await fetch("/api/query", {
-    //   method: "POST",
-    //   body: JSON.stringify(value),
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    // });
-    // if (res.ok) {
-    //   setLoading(false);
-    //   const json = await res.json();
-    //   console.log(json.data);
-    //   setQueryResponse(json.data);
-    // }
-    // if (res.error) {
-    //   setLoading(false);
-    //   console.log(res.error);
-    //   setError(res.error);
-    // }
+    const res = await fetch("/api/query", {
+      method: "POST",
+      body: JSON.stringify(value),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    if (res.ok) {
+      setLoading(false);
+      const json = await res.json();
+      console.log(json.data);
+      setQueryResponse(json.data);
+    }
+    if (res.error) {
+      setLoading(false);
+      console.log(res.error);
+      setError(res.error);
+    }
   };
   const handleAnalogSelect = (e) => {
     // loop over other options and set value to Pick an analogy
